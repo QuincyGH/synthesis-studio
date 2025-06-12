@@ -37,8 +37,8 @@ public class SerializableTest implements Serializable {
     /**
      * 获取路径
      *
-     * @param fileName
-     * @return
+     * @param fileName 文件名
+     * @return 返回路径
      */
     public File getFile(String fileName) {
         File file = new File(this.getClass().getResource("").getPath() + File.separator + fileName);
