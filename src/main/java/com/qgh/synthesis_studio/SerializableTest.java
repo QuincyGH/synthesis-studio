@@ -1,18 +1,19 @@
 package com.qgh.synthesis_studio;
 
 import java.io.*;
+import java.nio.file.Files;
 
 public class SerializableTest implements Serializable {
     private static final long serialVersionUID = 1L;
     public static int yes = 1;
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         File file = new SerializableTest().getFile("yes 的练级攻略.txt");
         try {
             /*
             将对象序列化存储到文件中
              */
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+            ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(file.toPath()));
             out.writeObject(new SerializableTest());
             out.close();
 
@@ -22,15 +23,13 @@ public class SerializableTest implements Serializable {
             /*
             将文件中的数据反序列化为对象
              */
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            ObjectInputStream in = new ObjectInputStream(Files.newInputStream(file.toPath()));
             SerializableTest serializableTest = (SerializableTest) in.readObject();
             in.close();
 
             // 打印反序列化对象中的静态变量值
             System.out.println(serializableTest.yes);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -40,14 +39,10 @@ public class SerializableTest implements Serializable {
      *
      * @param fileName
      * @return
-     * @throws FileNotFoundException
      */
-    public File getFile(String fileName) throws FileNotFoundException {
+    public File getFile(String fileName) {
         File file = new File(this.getClass().getResource("").getPath() + File.separator + fileName);
         System.out.println(file.getAbsolutePath());
-        if (file == null) {
-            throw new FileNotFoundException("此路径不存在");
-        }
         return file;
     }
 }
