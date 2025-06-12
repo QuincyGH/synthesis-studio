@@ -56,7 +56,7 @@ public class FilePath {
         创建一个 File 对象，不传递任何参数给它的构造函数，然后调用 getCanonicalPath() 方法来获取当前工程的路径。这种方法不依赖于类加载器，因此它适用于获取项目的根目录。
          */
         File directory = new File("");
-        String courseFile = null;
+        String courseFile;
         try {
             courseFile = directory.getCanonicalPath();
         } catch (IOException e) {
