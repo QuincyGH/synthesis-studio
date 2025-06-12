@@ -2,6 +2,7 @@ package com.qgh.synthesis_studio;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.Objects;
 
 public class SerializableTest implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -41,7 +42,7 @@ public class SerializableTest implements Serializable {
      * @return 返回路径
      */
     public File getFile(String fileName) {
-        File file = new File(this.getClass().getResource("").getPath() + File.separator + fileName);
+        File file = new File(Objects.requireNonNull(this.getClass().getResource("")).getPath() + File.separator + fileName);
         System.out.println(file.getAbsolutePath());
         return file;
     }
