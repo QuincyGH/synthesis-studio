@@ -2,6 +2,7 @@ package com.qgh.synthesis_studio;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class FilePath {
     public static void main(String[] args) {
@@ -12,33 +13,33 @@ public class FilePath {
         // 一、获取项目编译路径
         // 1、使用 getResource().getPath() 获取编译路径
         // 1.1、传递 "/" 作为参数，返回类的 classpath 根路径
-        File f11 = new File(this.getClass().getResource("/").getPath());
+        File f11 = new File(Objects.requireNonNull(this.getClass().getResource("/")).getPath());
         // D:\AppStuData\IdeaProjects\synthesis-studio\target\classes
         System.out.println(f11);
 
         // 1.2、传递以 "/" 开头作为参数，返回类的以 classpath 根路径开头的路径
-        File f12 = new File(this.getClass().getResource("/com/qgh").getPath());
+        File f12 = new File(Objects.requireNonNull(this.getClass().getResource("/com/qgh")).getPath());
         // D:\AppStuData\IdeaProjects\synthesis-studio\target\classes\com\qgh
         System.out.println(f12);
 
         // 1.3、传递 "" 作为参数，返回类所在包的路径
-        File f13 = new File(this.getClass().getResource("").getPath());
+        File f13 = new File(Objects.requireNonNull(this.getClass().getResource("")).getPath());
         // D:\AppStuData\IdeaProjects\synthesis-studio\target\classes\com\qgh\synthesis_studio
         System.out.println(f13);
 
         // 1.4、传递以 "" 开头作为参数，返回以类所在包开头的路径
-        File f14 = new File(this.getClass().getResource("temp").getPath());
+        File f14 = new File(Objects.requireNonNull(this.getClass().getResource("temp")).getPath());
         // D:\AppStuData\IdeaProjects\synthesis-studio\target\classes\com\qgh\synthesis_studio\temp
         System.out.println(f14);
 
         // 2、使用类加载器 getClassLoader() 获取编译路径，始终从 classpath 根路径开始，参数不能以 "/" 开头
         // 2.1、传递 "" 作为参数，返回类的 classpath 根路径
-        File f21 = new File(this.getClass().getClassLoader().getResource("").getPath());
+        File f21 = new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource("")).getPath());
         // D:\AppStuData\IdeaProjects\synthesis-studio\target\classes
         System.out.println(f21);
 
         // 2.2、传递以 "" 开头作为参数，返回以 classpath 根路径开头的路径
-        File f22 = new File(this.getClass().getClassLoader().getResource("com").getPath());
+        File f22 = new File(Objects.requireNonNull(this.getClass().getClassLoader().getResource("com")).getPath());
         // D:\AppStuData\IdeaProjects\synthesis-studio\target\classes\com
         System.out.println(f22);
 
